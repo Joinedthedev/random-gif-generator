@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="#">
+
+  <label for="ginput"> search a random gif</label>
+      <input type="text" name="ginput" id="ginput" >
+      <button type="submit"></button>
+  
+  <script>
+    
+    const getInput = document.querySelector('#ginput')
+    const img = document.querySelector('img')
+    const getGiph = document.querySelector('button')
+
+
+
+    const getGify = ()=>{
+    fetch('https://api.giphy.com/v1/gifs/translate?api_key=GMzJnCbp5smOKxrXXQw8NYRJE2Y3S3zj&s=' + getInput.value,
+      { mode: 'cors' }).then((response) => {
+        return response.json();
+      }).then((response) => {
+        img.src = response.data.images.original.url;
+      }).catch((error) => {
+        prompt(error)
+        
+      })
+    }
+
+    getGiph.addEventListener('click',()=>{
+ 
+      getGify();
+    })
+  </script>
+</body>
+
+</html>
