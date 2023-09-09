@@ -5,38 +5,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <img src="#">
 
-  <label for="ginput"> search a random gif</label>
-      <input type="text" name="ginput" id="ginput" >
-      <button type="submit"></button>
-  
+
+  <div id="search-sec">
+    <h1 class="neonText">Search for a gif<h1>
+        <div id="input-sec">
+
+          <input type="text" name="ginput" id="ginput" required>
+          <button type="submit">search</button>
+
+        </div>
+        <div id="img-con">
+          <div><img src="#"></div>
+        </div>
+  </div>
+
+
   <script>
-    
+
     const getInput = document.querySelector('#ginput')
     const img = document.querySelector('img')
     const getGiph = document.querySelector('button')
 
 
 
-    const getGify = ()=>{
-    fetch('https://api.giphy.com/v1/gifs/translate?api_key=GMzJnCbp5smOKxrXXQw8NYRJE2Y3S3zj&s=' + getInput.value,
-      { mode: 'cors' }).then((response) => {
-        return response.json();
-      }).then((response) => {
-        img.src = response.data.images.original.url;
-      }).catch((error) => {
-        prompt(error)
-        
-      })
+    const getGify = async () => {
+
+
+      const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=GMzJnCbp5smOKxrXXQw8NYRJE2Y3S3zj&s=${getInput.value}`,
+        { mode: 'cors' });
+
+
+      const gif = await response.json();
+      // ogGif = gif.data.images.original.url;
+      // const resize = 
+
+      img.src = gif.data.images.original.url;
     }
 
-    getGiph.addEventListener('click',()=>{
- 
+
+
+
+    getGiph.addEventListener('click', () => {
+
+      
       getGify();
+      img.classList.add('visible');
+      
     })
   </script>
 </body>
