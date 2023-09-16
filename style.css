@@ -27,7 +27,6 @@ body {
 
 img{
     display: none;
-    padding: 25px;
     width: 50vw;
     height: 50vh;
 }
@@ -46,6 +45,8 @@ img{
     margin: 10px;
     border-radius: 5px;
     box-shadow: 0 0 50px 15px #48abe0;
+    padding: 5px;
+
 }
 
 
